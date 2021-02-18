@@ -19,12 +19,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="transacoes")
-public class Transacao implements Serializable {
+@Table(name="contas")
+public class Conta implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long idTransacao;
-    private String descricao;
-    private Double valor;
+    private Long idConta;
+    private String nomeConta;
+    private Double saldo;
+    
 }
