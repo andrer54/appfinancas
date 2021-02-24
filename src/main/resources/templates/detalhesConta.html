@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>APP financa</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Conta</h1>
+        <!--
+        <a href="/cadastrarEvento" class="waves-effect waves-light btn">Cadastrar evento</a>
+        <a href="/cadastrarTarefas" class="waves-effect waves-light btn">Cadastrar tarefas</a>
+        <a href="/tarefas" class="waves-effect waves-light btn">tarefas</a>
+        -->
+        <div th:each="conta : ${conta}" class="container">
+            <div class="row">
+                <p>Nome da conta: <span th:text="${conta.nomeConta}"></span></p>
+                <p>saldo: <span th:text="${conta.saldo}"></span></p>
+        </div>
+           <!-- <th:block th:include="mensagemValidacao"></th:block> -->
+            <form action="" method="post">
+                descrição: <input type="text" name="descricao" id="" />
+                valor: <input type="text" name="valor" id="" />
+                <button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+            </form>
+        </div>
+        <div class="container">
+            <h5>lista de transações</h5>
+            <div class="row" th:each="transacao : ${transacoes}">
+                
+                <div ckass="input-field col s6">
+                    <p><span th:text="${transacao.descricao}"></span></p>
+                </div>
+
+                <div ckass="input-field col s3">
+                    <p><span th:text="${transacao.valor}"></span></p>
+                </div>
+                    <!-- <a th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.telefone)).build()}" target="_blank"><i class="material-icons left">delete_forever</i></a> !-->
+            </div>
+            
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+</html>

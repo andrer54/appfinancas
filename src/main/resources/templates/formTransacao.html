@@ -2,6 +2,26 @@
 <form action="" method="post">
 Descrição da Transação: <input type="text" name="descricao" id="">
 Valor: <input type="number" name="valor" id="">
+Tipo de Transação: 
+<select name="tipoDeTransacao">
+    <option th:each="tipoDeTransacaoOpt : ${T(br.com.adev.appfinancas.model.TipoDeTransacao).values()}" 
+        th:value="${tipoDeTransacaoOpt}" th:text="${tipoDeTransacaoOpt}"></option>
+</select>
+
+Categoria: 
+<select name="id">
+    <option th:each="categoria : ${categorias}" th:value=${categoria.id} th:text="${categoria.nome}">
+    </option>
+</select>
+
+Conta:
+<select name="idConta">
+    <option th:each="conta : ${contas}" th:value=${conta.idConta} th:text="${conta.nomeConta}">
+    </option>
+</select>
+
+
 
 <button type="submit">Salvar</button>
 </form>
+

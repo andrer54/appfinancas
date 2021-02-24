@@ -6,21 +6,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>App Finanças</title>
   </head>
   <body>
-    <h1>App transações</h1>
+      <header>
+ 
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#"><h2>App Finanças</h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+         
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                
+            
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Transações
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Ver transações</a>
+                      <a class="dropdown-item" href="/transacao/nova">Nova transação</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Editar transações</a>
+                    </div>
+                  </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/contas">Contas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categorias">Categorias</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Desativado</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+      </header>
+    
+   
+    <h3>Contas</h3>
+    <table class="container">
+        <thead>
+            <tr>
+               
+               
+                <th>Conta</th>
+                <th>Saldo</th>
+                <th>Deletar</th>
+
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="conta : ${contas}">
+                <div class="row">
+
+                    <td><a th:href="${(#mvc.url('CC#detalhesConta').arg(0, conta.idConta)).build()}"><span th:text="${conta.nomeConta}"></span></a></td>
+                    <td><span th:text="${conta.saldo}"></span></td>
+                    <td><!--<a th:href="${(#mvc.url('CC#deletarConta').arg(0, conta.idConta)).build()}">deletar</a>!--></td>
+  
+                </div>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+               <td colspan="2"> <b>Total </b></td>
+               <td>  <b><span id="12"
+                th:text="${#aggregates.sum(contas.![saldo])}"> </span></b></td>
+        
+            </tr>
+          </tfoot>    
+
+    </table>
+    <hr>
+    <h3>Transações</h3>
 
 
     <table class="container">
         <thead>
             <tr>
                
-               
+                <th><!--data!--></th>
                 <th>descricao</th>
                 <th>valor</th>
+                <th>tipo</th>
+                <th>Categoria</th>
+                <th><!--Conta!--></th>
                 <th>editar</th>
                 <th>Deletar</th>
 
@@ -30,20 +110,23 @@
         <tbody>
             <tr th:each="transacao : ${transacoes}">
                 <div class="row">
-
+                    <td><!--data aqui!--></td>
                     <td><span th:text="${transacao.descricao}"></span></td>
                     <td><span th:text="${transacao.valor}"></span></td>
-                    <td><!--<a th:href="${(#mvc.url('TC#detalhesTransacao').arg(0, transacao.idTransacao)).build()}"><span th:text="${transacao.nome}"></span></a>!--></td>
-                    <td><a th:href="${(#mvc.url('TC#deletarTransacao').arg(0, transacao.idTransacao)).build()}">deletar</a></td>
+                    <td><span th:text="${transacao.tipoDeTransacao}"></span></td>
+                    <td><span th:text="${transacao.categoria}"></span></td>
+                    <td><span th:text="${transacao.conta}"></span></td>
+                    <td>X<!--<a th:href="${(#mvc.url('TC#detalhesTransacao').arg(0, transacao.idTransacao)).build()}"><span th:text="${transacao.nome}"></span></a>!--></td>
+                    <td><a th:href="${(#mvc.url('TC#deletarTransacao').arg(0, transacao.idTransacao)).build()}">X</a></td>
   
                 </div>
             </tr>
         </tbody>
         <tfoot>
             <tr>
-               <td colspan="2">Totalizador</td>
-               <td>  <span id="2"
-                th:text="${#aggregates.sum(transacoes.![valor])}"> </span></td>
+               <td colspan="2"> <b>Total</b></td>
+               <td>  <b> <span id="2"
+                th:text="${#aggregates.sum(transacoes.![valor])}"> </span></b></td>
         
             </tr>
           </tfoot>    
@@ -55,7 +138,8 @@
 
 
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
 </html>
