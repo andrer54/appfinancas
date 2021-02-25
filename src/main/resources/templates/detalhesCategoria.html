@@ -7,17 +7,17 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-        <h1>Conta</h1>
+        <h1>Categoria</h1>
+        <div>
         <!--
         <a href="/cadastrarEvento" class="waves-effect waves-light btn">Cadastrar evento</a>
         <a href="/cadastrarTarefas" class="waves-effect waves-light btn">Cadastrar tarefas</a>
         <a href="/tarefas" class="waves-effect waves-light btn">tarefas</a>
         -->
-        <div th:each="conta : ${conta}" class="container">
+        <div th:each="categoria : ${categoria}" class="container">
             <div class="row">
-                <p>Nome da conta: <span th:text="${conta.nomeConta}"></span></p>
-                <p>saldo: <span th:text="${conta.saldo}"></span></p>
-        </div>
+                <p>Nome da categoria: <span th:text="${categoria.nome}"></span></p>
+           </div>
            <!-- <th:block th:include="mensagemValidacao"></th:block> -->
             <form action="" method="post">
                 descrição: <input type="text" name="descricao" id="" />
@@ -26,7 +26,7 @@
             </form>
         </div>
         <div class="container">
-            <h5>lista de transações</h5>
+            <h5>lista de transaçõesssss</h5>
             <div class="row" th:each="transacao : ${transacoes}">
                 
                 <div ckass="input-field col s6">
