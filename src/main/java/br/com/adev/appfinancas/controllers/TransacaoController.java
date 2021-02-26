@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.adev.appfinancas.model.Categoria;
 import br.com.adev.appfinancas.model.Conta;
+import br.com.adev.appfinancas.model.TipoDeTransacao;
 import br.com.adev.appfinancas.model.Transacao;
 import br.com.adev.appfinancas.repository.CategoriaRepository;
 import br.com.adev.appfinancas.repository.ContaRepository;
@@ -52,9 +53,17 @@ public class TransacaoController {
 
         Conta contaX= cr.findByIdConta(conta.getIdConta());
         transacao.setConta(contaX);
+        //Quando a transacao é DESPESA
+        if(transacao.getTipoDeTransacao()==TipoDeTransacao.DESPESA){
+        contaX.setSaldo(contaX.getSaldo() - transacao.getValor());
+        cr.save(contaX);
+        }else{      //Quando a transacao é RECEITA
+            contaX.setSaldo(contaX.getSaldo() + transacao.getValor());
+            cr.save(contaX);
+        }// else -> tranferencia
+
 
         Categoria categoriaX = categoriaRepository.findById(categoria.getId());
-        //Categoria categoria = categoriaRepository.findById(id);
         transacao.setCategoria(categoriaX);
         tr.save(transacao);
         return "redirect:/";
