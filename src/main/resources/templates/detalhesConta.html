@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head>
-        <title>APP financa</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    </head>
-    <body>
+      <head th:replace="~{fragmentos :: head}"></head>
+  
+  <body>
+      <header th:replace="~{fragmentos :: header}"></header>
         <h1>Conta</h1>
         <!--
         <a href="/cadastrarEvento" class="waves-effect waves-light btn">Cadastrar evento</a>

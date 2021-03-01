@@ -1,56 +1,11 @@
 <!doctype html>
 <html xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>App Finanças</title>
-  </head>
+  
+      <head th:replace="~{fragmentos :: head}"></head>
+  
   <body>
-      <header>
- 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#"><h2>App Finanças</h2></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-         
-            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                
-            
-
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Transações
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Ver transações</a>
-                      <a class="dropdown-item" href="/transacao/nova">Nova transação</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Editar transações</a>
-                    </div>
-                  </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/contas">Contas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/categorias">Categorias</a>
-                  </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Desativado</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-      </header>
+      <header th:replace="~{fragmentos :: header}"></header>
     
    
     <h3>Contas</h3>
