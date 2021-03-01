@@ -70,6 +70,13 @@ public class ContaController {
             
         return "redirect:/{idConta}";
     }
+    @RequestMapping("/contas/transferencia")
+    public ModelAndView transferencia(){
+        ModelAndView mv = new ModelAndView("transferencia");
+        Iterable<Conta> contas = cr.findAll();
+        mv.addObject("contas", contas);
+        return mv;
+    }
 
 
 }

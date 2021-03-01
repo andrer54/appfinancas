@@ -1,0 +1,25 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  
+      <head th:replace="~{fragmentos :: head}"></head>
+  
+  <body>
+      <header th:replace="~{fragmentos :: header}"></header>
+<div class="container">
+    <hr>
+ <h2>Transferencia entre contas</h2>
+ <hr>
+ <form action="" method="post">
+    conta origem: <select name="idConta">
+        <option th:each="conta : ${contas}" th:value=${conta.idConta} th:text="${conta.nomeConta}">
+        </option>
+    </select>
+      conta destino:<select name="idConta">
+        <option th:each="conta : ${contas}" th:value=${conta.idConta} th:text="${conta.nomeConta}">
+        </option>
+    </select>
+      valor a ser transferido <input /> 
+      <button type="submit">Salvar</button>
+</form>
+</div>
