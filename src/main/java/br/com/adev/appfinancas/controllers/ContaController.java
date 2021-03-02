@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.adev.appfinancas.model.Conta;
+import br.com.adev.appfinancas.model.TipoDeTransacao;
 import br.com.adev.appfinancas.model.Transacao;
 import br.com.adev.appfinancas.repository.ContaRepository;
 import br.com.adev.appfinancas.repository.TransacaoRepository;
@@ -77,6 +78,30 @@ public class ContaController {
         mv.addObject("contas", contas);
         return mv;
     }
+    @RequestMapping(value="/contas/transferencia", method=RequestMethod.POST)
+    public String transferencia(long idContaOrigem, long idContaDestino, Double valor, RedirectAttributes attributes){
+
+        Conta contaOrigem= cr.findByIdConta(idContaOrigem);
+        Conta contaDestino= cr.findByIdConta(idContaDestino);
+        
+        contaOrigem.setSaldo(contaOrigem.getSaldo()-valor);
+        contaDestino.setSaldo(contaDestino.getSaldo()+valor);
+
+        cr.save(contaOrigem);
+        cr.save(contaDestino);
+
+        Transacao transacao = new Transacao();
+        transacao.setDescricao("Transferencia para conta: "+contaDestino.getNomeConta());
+        transacao.setValor(valor);
+        transacao.setConta(contaOrigem);
+   //     transacao.setCategoria(categoria);
+        transacao.setTipoDeTransacao(TipoDeTransacao.TRANSFERENCIA);
+        tr.save(transacao);
+
+        
+        return "redirect:/";
+    }
+
 
 
 }

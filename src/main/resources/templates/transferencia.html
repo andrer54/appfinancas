@@ -11,15 +11,15 @@
  <h2>Transferencia entre contas</h2>
  <hr>
  <form action="" method="post">
-    conta origem: <select name="idConta">
+    conta origem: <select name="idContaOrigem">
         <option th:each="conta : ${contas}" th:value=${conta.idConta} th:text="${conta.nomeConta}">
         </option>
     </select>
-      conta destino:<select name="idConta">
+      conta destino:<select name="idContaDestino">
         <option th:each="conta : ${contas}" th:value=${conta.idConta} th:text="${conta.nomeConta}">
         </option>
     </select>
-      valor a ser transferido <input /> 
+      valor a ser transferido <input name="valor"/> 
       <button type="submit">Salvar</button>
 </form>
 </div>
