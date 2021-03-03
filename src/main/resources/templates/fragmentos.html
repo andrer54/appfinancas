@@ -27,7 +27,7 @@
                   Transações
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Ver transações</a>
+                  <a class="dropdown-item" href="/">Ver transações</a>
                   <a class="dropdown-item" href="/transacao/nova">Nova transação</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Editar transações</a>
@@ -61,16 +61,39 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+            <li class="nav-item dropup">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Transações
+              </a>
+              
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/">Ver transações</a>
+                <a class="dropdown-item" href="/transacao/nova">Nova transação</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Editar transações</a>
+              </div>
             </li>
             <li class="nav-item dropup">
-              <a class="nav-link dropdown-toggle" href="https://getbootstrap.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropup</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown10">
-                <a class="dropdown-item" href="#">Item</a>
-                <a class="dropdown-item" href="#">Outro item</a>
-                <a class="dropdown-item" href="#">Algum outro item</a>
-              </div>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Contas
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/contas">Ver contas</a>
+                    <a class="dropdown-item" href="/novaConta">Nova conta</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="contas/transferencia">Transferencia entre contas</a>
+                  </div>
+            </li>
+            <li class="nav-item dropup">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categorias
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/categorias">Ver categorias</a>
+                    <a class="dropdown-item" href="/categoria/nova">Nova categoria</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item disabled" href="#">Relatório por categoria</a>
+                  </div>
             </li>
           </ul>
         </div>
