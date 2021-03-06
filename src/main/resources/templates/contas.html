@@ -25,9 +25,9 @@
             <tr th:each="conta : ${contas}">
                 <div class="row">
 
-                    <td><span th:text="${conta.nomeConta}"></span></td>
-                    <td><span th:text="${conta.saldo}"></span></td>
                     <td><a th:href="${(#mvc.url('CC#detalhesConta').arg(0, conta.idConta)).build()}"><span th:text="${conta.nomeConta}"></span></a></td>
+                    <td><span th:text="${conta.saldo}"></span></td>
+                   
                     <td><!--<a th:href="${(#mvc.url('TC#deletarTransacao').arg(0, transacao.idTransacao)).build()}">deletar</a>!--></td>
   
                 </div>

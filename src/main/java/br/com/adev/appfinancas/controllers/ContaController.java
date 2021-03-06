@@ -101,6 +101,32 @@ public class ContaController {
         
         return "redirect:/";
     }
+    @RequestMapping(value="/editar/{idConta}", method=RequestMethod.GET)
+    public ModelAndView editarConta(@PathVariable("idConta") long idConta){
+        Conta conta = cr.findByIdConta(idConta);
+        ModelAndView mv = new ModelAndView("/formConta");
+        mv.addObject("conta", conta);
+        return mv;
+    }
+ 
+
+    @RequestMapping(value="/editar/{idConta}", method=RequestMethod.POST)
+    public String editarConta(@PathVariable("idConta") long idConta, Transacao transacao, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("mensagem", "Verifique os campos");
+            return "redirect:/{idConta}";
+        }
+        Conta conta= cr.findByIdConta(idConta);
+        transacao.setConta(conta);
+        tr.save(transacao);
+        //esse trecho deve subtrair do saldo da conta.
+        conta.setSaldo(conta.getSaldo() - transacao.getValor());
+        cr.save(conta);
+
+        attributes.addFlashAttribute("mensagem", "Convidado adicionado com sucesso!");
+            
+        return "redirect:/{idConta}";
+    }
 
 
 
