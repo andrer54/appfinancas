@@ -82,5 +82,8 @@ public class TransacaoController {
     }
       //editarTransacao get
       //editarTransacao post
-
+    @RequestMapping("/contato")
+    public String contato(){
+        return "contato";
+    }
 }
