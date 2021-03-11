@@ -40,7 +40,7 @@ public class CategoriaController {
     @RequestMapping(value ="/categoria/nova", method=RequestMethod.POST)
     public String form(Categoria categoria, BindingResult result, RedirectAttributes attributes){
         categoriaRepository.save(categoria);
-        return "redirect:/";
+        return "redirect:/categorias";
     }
 
     @RequestMapping(value="/categoria/{id}", method=RequestMethod.GET)
@@ -71,6 +71,14 @@ public class CategoriaController {
         attributes.addFlashAttribute("mensagem", "Convidado adicionado com sucesso!");
             
         return "redirect:/categoria/{id}";
+    }
+
+    @RequestMapping("/deletarCategoria")
+    public String deletarCategoria(long id){
+        Categoria categoria = categoriaRepository.findById(id);
+
+        categoriaRepository.delete(categoria);
+        return "redirect:/categorias";
     }
 
 }
