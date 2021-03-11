@@ -77,6 +77,15 @@ public class CategoriaController {
     public String deletarCategoria(long id){
         Categoria categoria = categoriaRepository.findById(id);
 
+        Iterable<Transacao> transa = tr.findByCategoria(categoria);
+        //para cada elemento de transa definir categoria como null, 
+        for (Transacao transacao : transa) {
+            transacao.setCategoria(null);
+            tr.save(transacao);
+        }
+        //depois tr salva elementos de transa
+       
+
         categoriaRepository.delete(categoria);
         return "redirect:/categorias";
     }
