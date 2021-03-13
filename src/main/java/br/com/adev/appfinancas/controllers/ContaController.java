@@ -24,15 +24,15 @@ public class ContaController {
     @Autowired
     private TransacaoRepository tr;
 
-    @RequestMapping(value ="/novaConta", method=RequestMethod.GET)
+    @RequestMapping(value ="/conta/nova", method=RequestMethod.GET)
     public String form(){
         return "formConta";
     }
 
-    @RequestMapping(value ="/novaConta", method=RequestMethod.POST)
+    @RequestMapping(value ="/conta/nova", method=RequestMethod.POST)
     public String form(Conta conta, BindingResult result, RedirectAttributes attributes){
         cr.save(conta);
-        return "redirect:/";
+        return "redirect:/contas";
     }
 
     @RequestMapping("/contas")
@@ -104,7 +104,7 @@ public class ContaController {
     @RequestMapping(value="/editar/{idConta}", method=RequestMethod.GET)
     public ModelAndView editarConta(@PathVariable("idConta") long idConta){
         Conta conta = cr.findByIdConta(idConta);
-        ModelAndView mv = new ModelAndView("/formConta");
+        ModelAndView mv = new ModelAndView("/formEditConta");
         mv.addObject("conta", conta);
         return mv;
     }
@@ -128,6 +128,22 @@ public class ContaController {
         return "redirect:/{idConta}";
     }
 
+        @RequestMapping("/deletarConta")
+    public String deletarConta(long id){
+        Conta conta = cr.findByIdConta(id);
 
+        Iterable<Transacao> transa = tr.findByConta(conta);
+        //para cada elemento de transa definir categoria como null, 
+        for (Transacao transacao : transa) {
+            transacao.setConta(null);
+            tr.save(transacao);
+        }
+        //depois tr salva elementos de transa
+       
+
+        cr.delete(conta);
+        return "redirect:/contas";
+    
+    }
 
 }
