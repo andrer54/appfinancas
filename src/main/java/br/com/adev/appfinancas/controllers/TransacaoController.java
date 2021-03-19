@@ -72,6 +72,7 @@ public class TransacaoController {
     @RequestMapping("/deletarTransacao")
     public String deletarTransacao(long id){
         Transacao transacao = tr.findByIdTransacao(id);
+        
         if(transacao.getConta()!=null){
         Conta conta = transacao.getConta();
         conta.setSaldo(conta.getSaldo()+transacao.getValor());
