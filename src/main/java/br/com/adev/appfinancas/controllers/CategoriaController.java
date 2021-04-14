@@ -86,23 +86,25 @@ public class CategoriaController {
  
 
     @RequestMapping(value="/editar/categoria/{id}", method=RequestMethod.POST)
-    public String editarCategoriaPost(@PathVariable("id") long id, Transacao transacao, BindingResult result, RedirectAttributes attributes){
+    public String editarCategoriaPost(@PathVariable("id") long id, Categoria categoria, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
             attributes.addFlashAttribute("mensagem", "Verifique os campos");
             return "redirect:/categoria/{id}";
         }
-        Categoria categoria = categoriaRepository.findById(id);
-        
-        transacao.setCategoria(categoria);
-        tr.save(transacao);
+        Categoria categoriaX = categoriaRepository.findById(id);
+        categoriaX.setNome(categoria.getNome());
+        categoriaRepository.save(categoriaX);
+       
         //esse trecho deve subtrair do saldo da conta.
         //conta.setSaldo(conta.getSaldo() - transacao.getValor());
         //cr.save(conta);
 
         attributes.addFlashAttribute("mensagem", "Convidado adicionado com sucesso!");
             
-        return "redirect:/categoria/{id}";
+        return "redirect:/categorias";
     }
+
+    
 
     @RequestMapping("/deletarCategoria")
     public String deletarCategoria(long id){

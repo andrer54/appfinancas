@@ -5,38 +5,35 @@
   
   <body>
       <header th:replace="~{fragmentos :: header}"></header>
-        <h1>Categoria</h1>
+        <h1>EDITAR Categoria</h1>
         <div>
-        <!--
-        <a href="/cadastrarEvento" class="waves-effect waves-light btn">Cadastrar evento</a>
-        <a href="/cadastrarTarefas" class="waves-effect waves-light btn">Cadastrar tarefas</a>
-        <a href="/tarefas" class="waves-effect waves-light btn">tarefas</a>
-        -->
-        <div th:each="categoria : ${categoria}" class="container">
-            <div class="row">
-                <p>Nome da categoria: <span th:text="${categoria.nome}"></span></p>
-           </div>
-           <!-- <th:block th:include="mensagemValidacao"></th:block> -->
-            <form action="" method="post">
-                descrição: <input type="text" name="descricao" id="" />
-                valor: <input type="text" name="valor" id="" />
-                <button class="waves-effect waves-light btn" type="submit">Adicionar</button>
-            </form>
-        </div>
-        <hr>
-        <div class="container">
-            <h5>lista de transaçõesssss</h5>
-            <div class="row" th:each="transacao : ${transacoes}">
-                
-                <div ckass="input-field col s6">
-                    <p><span th:text="${transacao.descricao}"></span></p>
+            <div th:each="categoria : ${categoria}" class="container">
+                <div class="row">
+                 
+                    <form action="" method="post">
+                        Nome da categoria: <input type="text" name="nome" id="" th:value="${categoria.nome}" />
+                        <button class="waves-effect waves-light btn" type="submit">Alterar nome</button>
+                    </form>
                 </div>
+            
 
-                <div ckass="input-field col s3">
-                    <p><span th:text="${transacao.valor}"></span></p>
-                </div>
-                    <!-- <a th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.telefone)).build()}" target="_blank"><i class="material-icons left">delete_forever</i></a> !-->
             </div>
+
+            <hr>
+            
+            <div class="container">
+                <h5>lista de transaçõesssss</h5>
+                <div class="row" th:each="transacao : ${transacoes}">
+                    
+                    <div ckass="input-field col s6">
+                        <p><span th:text="${transacao.descricao}"></span></p>
+                    </div>
+
+                    <div ckass="input-field col s3">
+                        <p><span th:text="${transacao.valor}"></span></p>
+                    </div>
+                        <!-- <a th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.telefone)).build()}" target="_blank"><i class="material-icons left">delete_forever</i></a> !-->
+                </div>
             
         </div>
         <footer th:replace="~{fragmentos :: footer}"></footer>

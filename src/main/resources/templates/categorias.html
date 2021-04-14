@@ -24,8 +24,8 @@
             <tr th:each="categoria : ${categorias}">
                 <div class="row">
 
-                    <td><span th:text="${categoria.nome}"></span></td>
                     <td><a th:href="${(#mvc.url('CC#detalhesCategoria').arg(0, categoria.id)).build()}"><span th:text="${categoria.nome}"></span></a></td>
+                    <td><a th:href="${(#mvc.url('CC#editarCategoria').arg(0, categoria.id)).build()}">editar</a></td>
                     <td><a th:href="${(#mvc.url('CC#deletarCategoria').arg(0, categoria.id)).build()}">deletar</a></td>
   
                 </div>

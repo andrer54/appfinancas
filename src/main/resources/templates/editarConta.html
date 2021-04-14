@@ -5,24 +5,14 @@
   
   <body>
       <header th:replace="~{fragmentos :: header}"></header>
-        <h1>Conta</h1>
-        <!--
-        <a href="/cadastrarEvento" class="waves-effect waves-light btn">Cadastrar evento</a>
-        <a href="/cadastrarTarefas" class="waves-effect waves-light btn">Cadastrar tarefas</a>
-        <a href="/tarefas" class="waves-effect waves-light btn">tarefas</a>
-        -->
-        <div th:each="conta : ${conta}" class="container">
-            <div class="row">
-                <p>Nome da conta: <span th:text="${conta.nomeConta}"></span></p>
-                <p>saldo: <span th:text="${conta.saldo}"></span></p>
-                <p><a th:href="${conta.idConta}" class="btn btn-danger">Editar Conta</a></p>
-                
-              
-                
-        </div>
+        <h1>Categoria</h1>
         <div>
-            <hr>
-        <!-- <th:block th:include="mensagemValidacao"></th:block> -->
+
+        <div th:each="conta  : ${conta}" class="container">
+            <div class="row">
+                <p>Nome da categoria: <span th:text="${conta.nome}"></span></p>
+           </div>
+          
             <form action="" method="post">
                 descrição: <input type="text" name="descricao" id="" />
                 valor: <input type="text" name="valor" id="" />
@@ -31,21 +21,21 @@
         </div>
         <hr>
         <div class="container">
-            <h5>lista de transações</h5>
+            <h5>lista de transaçõesssss</h5>
             <div class="row" th:each="transacao : ${transacoes}">
                 
-                <div class="input-field col s6">
+                <div ckass="input-field col s6">
                     <p><span th:text="${transacao.descricao}"></span></p>
                 </div>
 
-                <div class="input-field col s3">
+                <div ckass="input-field col s3">
                     <p><span th:text="${transacao.valor}"></span></p>
                 </div>
                     <!-- <a th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.telefone)).build()}" target="_blank"><i class="material-icons left">delete_forever</i></a> !-->
             </div>
             
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <footer th:replace="~{fragmentos :: footer}"></footer>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
 </html>
